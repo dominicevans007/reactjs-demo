@@ -1,20 +1,20 @@
 # Getting Started with App
 
-## Available Scripts
+## Prerequisite
+Install npm & nodejs
 
-In the project directory, you can run:
+## Setup
+Clone the project \
+Open the terminal \
+Browser to the project directory \
+Run the following command
+### `npm install` - execute only once
 
-### `npm install`
-
-Installs all modules.
-
-### `npm start`
+### `npm start` - Run after the above command
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-
-The products are fetched from the Rest Api and displayed. 
 
 ### Functionalities Covered:
 
