@@ -1,0 +1,14 @@
+.noResult {
+    border: 1px dashed #e85032;
+    padding: 10px;
+    color: #999999;
+    font-size: 20px;
+    line-height: 30px;
+    width: 700px;
+    margin: auto;
+}
+
+select {
+   padding: 10px;
+    margin-left: 5px;
+}

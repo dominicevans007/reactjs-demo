@@ -1,0 +1,44 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 250px;
+    text-align: center;
+    display: inline-block;
+    margin: 40px 10px;
+}
+
+.price {
+    color: #777;
+    font-size: 20px;
+}
+
+.card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #e85032;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.card button:hover {
+    opacity: 0.7;
+}
+
+.card img {
+    width: 100%;
+}
+
+.search {
+    margin: 10px;
+    font-weight: bold;
+}
+
+.search input[type=text] {
+    border: 1px solid #999;
+    border-radius: 5px;
+    font-size: 17px;
+    padding: 6px;
+}
