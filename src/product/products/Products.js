@@ -1,8 +1,30 @@
 import React, {Component} from "react";
+import Modal from 'react-modal';
 
 import axios from "axios";
 import Product from "../Product";
+import Report from "../../reports/Report";
+
 import "./Products.css";
+import logo from '../../logo.png';
+import ProductForm from "../ProductForm"; // with import
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+
+const customStyles = {
+    content : {
+        top                   : '50%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)'
+    }
+};
 
 class Products extends Component {
 
@@ -10,12 +32,23 @@ class Products extends Component {
         super(props);
         this.state = {
             products: [],
-            resultLoaded: false
+            resultLoaded: false,
+            showModal: false
         }
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
     }
 
     componentDidMount() {
         this.loadItems();
+    }
+
+    handleOpenModal () {
+        this.setState({ showModal: true });
+    }
+
+    handleCloseModal () {
+        this.setState({ showModal: false });
     }
 
     filterByType = (el) => {
@@ -63,7 +96,7 @@ class Products extends Component {
             let self = this;
             let url = `http://localhost:8080/product/type/${value}`;
             axios.get(url).then(function (response) {
-                self.setState({products: response.data});
+                self.setState({ "products" : response.data});
             }).catch(function (error) {
                 console.log(error);
             });
@@ -73,7 +106,8 @@ class Products extends Component {
     loadItems = () => {
         let self = this;
         axios.get('http://localhost:8080/product').then(function (response) {
-            self.setState({resultLoaded: true, products: response.data});
+            console.log("response----", response)
+            self.setState({resultLoaded: true, "products" : response.data});
         }).catch(function (error) {
             console.log(error);
         });
@@ -81,11 +115,9 @@ class Products extends Component {
 
     render() {
         let product = (
-            this.state.resultLoaded && <div className="noResult" >We were unable to locate any products matching your search. On EeBria we stock a
-                great range of drinks,
-                all ordered through our trade platform EeBriaTrade.com,
-                so whilst we don’t have what you were looking for, why not try a similar drink from one
-                of the many small independent producers listed on EeBria?</div>);
+            this.state.resultLoaded && <div className="noResult" >
+                We were unable to locate any products matching your search.
+            </div>);
         if (this.state.products.length > 0) {
             product = this.state.products.map((product, index) => {
                 return (<Product product={product} key={index}/>);
@@ -95,10 +127,20 @@ class Products extends Component {
                 borderBottom: '1px dashed #e85032', paddingBottom: "10px", color: '#e85032'};
         return (
             <div>
-                <img src="https://www.eebria.com/assets/images/v3/logo-2.png" style={{padding: "10px"}}/>
-                <h1 style={h1Style}>Welcome To Eebria Products Page!</h1>
+                <img src={logo} style={{padding: "10px", height: "70px"}}/>
+                <Router>
+                    <div>
+                        <Link to="/report" className="reportBtn">View Reports</Link>
+                        <Switch>
+                            <Route exact path="/report">
+                                <Report />
+                            </Route>
+                        </Switch>
+                    </div>
+                </Router>
+                <h1 style={h1Style}>Welcome To Page!</h1>
                 <div className="search">
-                    Search: <input type="text" onChange={this.search} placeholder="Beer/Cider"/>
+                    Search: <input type="text" onChange={this.search} placeholder="Cheese/Almonds"/>
                     &nbsp;
                     Sort By:
                     <select onChange={this.sort}>
@@ -115,6 +157,12 @@ class Products extends Component {
                         <option value="cheaper">Budget</option>
                         <option value="expensive">Expensive</option>
                     </select>
+                    <button className="addProductBtn" onClick={e => {
+                        this.handleOpenModal(e);
+                    }}>Add Product</button>
+                    <Modal isOpen={this.state.showModal} style={customStyles}>
+                        <ProductForm />
+                    </Modal>
                 </div>
                 {product}
             </div>

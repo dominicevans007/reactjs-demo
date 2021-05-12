@@ -1,0 +1,59 @@
+.header {
+    background-color: #282c34;
+    color: #ffffff;
+    font-size: 18px;
+    width: 600px;
+    padding: 5px 0px;
+}
+
+.header p {
+    background-color: #282c34;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.addProductForm ul {
+    display: block;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    width: 600px;
+}
+
+.addProductForm ul li {
+    padding: 5px 10px;
+    background-color: #EEEEEE;
+    border: 1px solid #DDDDDD;
+}
+
+.addProductForm ul li div {
+    font-weight: bold;
+}
+
+.addProductForm input {
+    width: 100%;
+}
+
+.addProductForm input[type=text], .addProductForm select, .addProductForm textarea {
+    padding: 10px;
+    margin: 10px 0;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    width: 97%;
+    border-radius: 5px;
+}
+
+.actions {
+    text-align: right;
+}
+
+.actions button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 15px;
+}
